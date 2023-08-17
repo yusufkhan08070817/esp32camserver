@@ -28,7 +28,7 @@ let connectedClients = [];
 
 wsServer.on("connection", (ws, req) => {
   console.log("Client connected");
-  console.log(req);
+
   connectedClients.push(ws);
  console.log( connectedClients);
   ws.on("message", (data) => {
