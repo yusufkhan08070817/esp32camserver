@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="" alt="">
+    <script>
+        const img = document.querySelector('img');
+        const wsurl = "ws://192.168.23.15:8888"; // Fix the WebSocket URL format
+        const ws = new WebSocket(wsurl);
+        let urlObject;
+
+        ws.onopen = () => console.log(`connected to ${wsurl}`);
+        ws.onmessage = message => {
+            const arrayBuffer = message.data;
+            if (urlObject) {
+                URL.revokeObjectURL(urlObject);
+            }
+            urlObject = URL.createObjectURL(new Blob([arrayBuffer]));
+            img.src = urlObject;
+            console.log(urlObject);
+        };
+    </script>
+</body>
+</html>
