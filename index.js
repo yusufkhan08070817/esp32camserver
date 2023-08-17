@@ -25,7 +25,7 @@ for (const interfaceName in networkInterfaces) {
   }
 }
 let connectedClients = [];
-
+ 
 wsServer.on("connection", (ws, req) => {
   console.log("Client connected");
   console.log(req);
