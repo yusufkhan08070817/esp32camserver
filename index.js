@@ -5,15 +5,15 @@ const os = require('os');
 
 
 const app = express();
-const WS_PORT = 8888||process.env.port;
-const HTTP_PORT = 8000||process.env.port;
+const WS_PORT = process.env.WS_PORT || 8888;
+const HTTP_PORT = process.env.HTTP_PORT || 8000;
 
 const wsServer = new WebSocket.Server({ port: WS_PORT }, () =>
   console.log(`WebSocket server is listening at ${WS_PORT}`)
 );
 
 const networkInterfaces = os.networkInterfaces();
-console.log('Network Interfaces:', networkInterfaces);
+
 
 // Find and print IPv4 addresses
 for (const interfaceName in networkInterfaces) {
@@ -28,8 +28,9 @@ let connectedClients = [];
 
 wsServer.on("connection", (ws, req) => {
   console.log("Client connected");
+  console.log(req);
   connectedClients.push(ws);
-
+ console.log( connectedClients);
   ws.on("message", (data) => {
     connectedClients.forEach((ws, i) => {
       if (ws.readyState === WebSocket.OPEN) {
