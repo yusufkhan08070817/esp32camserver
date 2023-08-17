@@ -30,7 +30,7 @@ wsServer.on("connection", (ws, req) => {
   console.log("Client connected");
 
   connectedClients.push(ws);
- console.log( connectedClients);
+
   ws.on("message", (data) => {
     connectedClients.forEach((ws, i) => {
       if (ws.readyState === WebSocket.OPEN) {
