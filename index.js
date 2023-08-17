@@ -6,7 +6,7 @@ const os = require('os');
 
 const app = express();
 const WS_PORT = process.env.WS_PORT || 8888;
-const HTTP_PORT = process.env.HTTP_PORT || 8000;
+const HTTP_PORT = process.env.HTTP_PORT || 80;
 
 const wsServer = new WebSocket.Server({ port: WS_PORT }, () =>
   console.log(`WebSocket server is listening at ${WS_PORT}`)
